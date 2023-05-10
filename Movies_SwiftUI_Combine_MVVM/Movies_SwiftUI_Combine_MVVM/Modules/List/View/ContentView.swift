@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var viemModel = MoviesViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        List(viemModel.movies, id: \.id) { movie in
+            Text(movie.title)
         }
-        .padding()
     }
 }
 
