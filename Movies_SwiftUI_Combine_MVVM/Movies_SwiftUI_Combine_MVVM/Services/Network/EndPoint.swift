@@ -20,7 +20,8 @@ protocol EndPointType {
 
 enum EndPoint {
     case movies
-   
+    case poster(path: String)
+    case genres
 }
 
 extension EndPoint: EndPointType {
@@ -30,16 +31,18 @@ extension EndPoint: EndPointType {
     
     var httpMethod: HTTPMethod {
         switch self {
-        case .movies:
+        case .movies, .poster, .genres:
             return .get
         }
     }
     
     var baseUrl: String {
         switch self {
-        case .movies:
+        case .movies, .genres:
             return "https://api.themoviedb.org/"
- 
+        case .poster:
+            return "https://image.tmdb.org/"
+
         }
     }
     
@@ -47,19 +50,23 @@ extension EndPoint: EndPointType {
         switch self {
         case .movies:
             return "/movie/popular"
+        case .poster(let path):
+            return "/t/p/w500/\(path)"
+        case .genres:
+            return "/genre/movie/list"
         }
     }
     
     var headers: HTTPHeaders? {
         switch self {
-        case .movies:
+        case .movies, .poster, .genres:
             return nil
         }
     }
     
     var body: [String : Any]? {
         switch self {
-        case .movies:
+        case .movies, .poster, .genres:
             return nil
         }
     }
@@ -70,13 +77,16 @@ extension EndPoint: EndPointType {
         case .movies:
             parameters["page"] = 1
             return parameters
- 
+        case .poster:
+            return nil
+        case .genres:
+            return parameters
         }
     }
     
     var encoding: ParameterEncoding {
         switch self {
-        case .movies:
+        case .movies, .poster, .genres:
             return URLEncoding.default
         }
     }

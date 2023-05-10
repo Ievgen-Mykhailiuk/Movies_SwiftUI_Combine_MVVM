@@ -90,3 +90,9 @@ struct MovieData: Codable {
     }
     
 }
+
+extension MovieModel{
+    
+    static let example = MovieModel(genres: ["Adventure", "Adventure", "Adventure", "Adventure"], id: 1, popularity: "8.5", posterPath: "/3CxUndGhUcZdt1Zggjdb2HkLLQX.jpg", releaseYear: "2022", title: "Ant-Man and the Wasp: Quantumania", votesAverage: "8.2", votesCount: "859", overview: "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler. In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler. In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler. In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler. In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler")
+
+}
